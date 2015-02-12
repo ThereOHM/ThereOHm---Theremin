@@ -1,0 +1,100 @@
+#N canvas 2 53 1009 676 10;
+#X obj 400 100 cnv 200 350 230 empty empty empty 20 12 0 14 -262130
+-66577 0;
+#X obj 400 101 cnv 15 350 20 empty empty Xylophone 125 12 0 14 -260097
+-1 0;
+#X obj 411 180 hsl 128 15 0 127 0 0 empty Xylo_Direct_Stic_Mix Direct_Stic_Mix
+-2 -8 0 10 -260097 -1 -1 7500 1;
+#X obj 412 212 hsl 128 15 0 127 0 0 empty Xylo_Stick_Hardness Stick_Hardness
+-2 -8 0 10 -260097 -1 -1 11000 1;
+#X obj 412 245 hsl 128 15 0 127 0 0 empty Xylo_Stick_Position Stick_Position
+-2 -8 0 10 -260097 -1 -1 11000 1;
+#X obj 412 277 hsl 128 15 0 127 0 0 empty Xylo_Vibrato_Frequency Vibrato_Frequency
+-2 -8 0 10 -260097 -1 -1 0 1;
+#X obj 412 308 hsl 128 15 0 127 0 0 empty Xylo_Vibrato_Gain Vibrato_Gain
+-2 -8 0 10 -260097 -1 -1 7500 1;
+#X obj 599 145 cnv 15 150 185 empty empty Presets 20 12 0 14 -258019
+-1 0;
+#X obj 607 167 bng 15 250 50 0 empty empty Standard_Config 17 7 0 10
+-49933 -260097 -1;
+#X text 138 27 Frequency (0Hz-1500Hz);
+#X floatatom 141 152 5 0 0 0 - - -;
+#X floatatom 158 106 5 0 0 2 min Xylo_autoscale_min -;
+#X floatatom 199 108 5 0 0 2 max Xylo_autoscale_max -;
+#X obj 141 131 autoscale;
+#X text 175 150 Frequency [Hz];
+#X obj 141 45 r frequency;
+#X obj 107 359 throw~ audio_out;
+#X obj 156 7 tgl 15 0 empty start_Xylophone Start_Xylophone 17 7 0
+10 -262144 -1 -1 0 1;
+#X obj 141 71 *;
+#X obj 240 56 switch~;
+#X text 289 54 <-- DSP on/off to redcue CPU load;
+#X msg 311 195 stkCtrl 1 \$1;
+#X obj 107 330 ModalBar~;
+#X msg 306 323 stkCtrl 11 \$1;
+#X msg 308 227 stkCtrl 2 \$1;
+#X msg 308 259 stkCtrl 4 \$1;
+#X msg 306 294 stkCtrl 7 \$1;
+#X msg 505 346 stkCtrl 16 \$1;
+#X text 424 383 comment;
+#X obj 402 384 hsl 128 15 0 127 0 0 empty Xylo_Volume Volume -2 -6
+0 8 -262144 -1 -1 11000 1;
+#X msg 399 412 stkCtrl 128 \$1;
+#X obj 607 190 vradio 15 1 0 9 empty Xylo_selection empty 0 -8 0 10
+-66577 -260097 -1 4;
+#X text 628 186 Marimba;
+#X text 628 201 Vibraphone;
+#X text 628 216 Agogo;
+#X text 628 231 Wood1;
+#X text 627 247 Reso;
+#X text 628 262 Wood2;
+#X text 628 277 Beats;
+#X text 628 292 Two Fixed;
+#X text 628 306 Clump;
+#X obj 158 200 metro 1500;
+#X obj 215 173 expr 60000/$f1;
+#X text 306 171 BPM --> ms;
+#X obj 410 145 hsl 128 15 25 200 0 0 empty Xylo_BPM BPM -2 -8 0 10
+-260097 -1 -1 1814 1;
+#X msg 124 273 100;
+#X msg 302 114 reset;
+#X obj 577 22 t b b;
+#X msg 605 344 \; Xylo_BPM 50 \; Xylo_autoscale_min 400 \; Xylo_autoscale_max
+100 \; Xylo_Direct_Stic_Mix 75 \; Xylo_Stick_Hardness 110 \; Xylo_Stick_Position
+110 \; Xylo_Vibrato_Frequency 0 \; Xylo_Vibrato_Gain 75 \; Xylo_Volume
+110 \; Xylo_selection 4 \;;
+#X connect 2 0 21 0;
+#X connect 3 0 24 0;
+#X connect 4 0 25 0;
+#X connect 5 0 26 0;
+#X connect 6 0 23 0;
+#X connect 8 0 48 0;
+#X connect 10 0 22 2;
+#X connect 11 0 13 1;
+#X connect 12 0 13 2;
+#X connect 13 0 10 0;
+#X connect 15 0 18 0;
+#X connect 17 0 18 1;
+#X connect 17 0 19 0;
+#X connect 17 0 41 0;
+#X connect 17 0 47 0;
+#X connect 18 0 13 0;
+#X connect 21 0 22 3;
+#X connect 22 0 16 0;
+#X connect 23 0 22 3;
+#X connect 24 0 22 3;
+#X connect 25 0 22 3;
+#X connect 26 0 22 3;
+#X connect 27 0 22 3;
+#X connect 29 0 30 0;
+#X connect 30 0 22 3;
+#X connect 31 0 27 0;
+#X connect 41 0 45 0;
+#X connect 42 0 41 1;
+#X connect 44 0 42 0;
+#X connect 45 0 22 1;
+#X connect 46 0 13 0;
+#X connect 47 0 46 0;
+#X connect 47 1 48 0;
+#X coords 0 -1 1 1 350 230 1 400 100;

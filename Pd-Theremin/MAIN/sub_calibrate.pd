@@ -1,0 +1,122 @@
+#N canvas 611 509 1009 676 10;
+#X obj 559 49 adc~;
+#X obj 241 557 dac~;
+#X floatatom 847 326 10 0 0 0 - - -;
+#X obj 847 348 s frequency;
+#X obj 285 399 catch~ audio_out;
+#X obj 47 208 r start;
+#X obj 296 543 throw~ audio_out_mp3_rec;
+#X obj 297 565 throw~ audio_out_mp3_stream;
+#X obj 202 89 unpack;
+#X obj 202 136 moses 1;
+#X floatatom 235 114 5 0 0 1 Amplitude - -;
+#X obj 156 67 fiddle~ 1024;
+#X obj 808 93 unpack;
+#X obj 808 148 moses 1;
+#X floatatom 841 122 5 0 0 1 Amplitude - -;
+#X obj 762 66 fiddle~ 1024;
+#X text 752 41 Pitch-Antenna;
+#X text 159 38 Volume-Antenna;
+#X obj 241 415 *~;
+#X floatatom 241 339 5 0 0 0 - - -;
+#X obj 241 361 autoscale 0.01 1;
+#X floatatom 241 386 5 0 0 0 - - -;
+#X obj 241 316 clip;
+#X obj 845 301 clip;
+#X msg 47 233 \; pd dsp \$1 \; pitch_ant_near 50 \; pitch_ant_distant
+95 \; vol_ant_near 70 \; vol_ant_distant 207 \;;
+#X obj 285 465 catch~ audio_out_beat;
+#X obj 484 443 s vol_ant_near;
+#X obj 484 420 spigot;
+#X obj 484 368 spigot;
+#X obj 484 392 s vol_ant_distant;
+#X obj 639 421 spigot;
+#X obj 640 373 spigot;
+#X obj 639 396 s pitch_ant_distant;
+#X obj 639 444 s pitch_ant_near;
+#X obj 401 122 cnv 200 350 230 empty empty empty 20 12 0 14 -262130
+-66577 0;
+#X obj 400 101 cnv 15 350 20 empty empty Antenna_Calibration 100 12
+0 14 -260097 -1 0;
+#X obj 579 139 cnv 15 170 210 empty empty Pitch_Calibration 20 12 0
+12 -258019 -1 0;
+#X obj 400 138 cnv 15 170 210 empty empty Volume_Calibration 20 12
+0 12 -258019 -1 0;
+#X floatatom 700 174 5 0 0 0 Current_Value - -;
+#X floatatom 519 175 5 0 0 0 Current_Value - -;
+#X obj 519 231 tgl 15 0 empty empty Near_Antenna -80 7 0 10 -262144
+-1 -1 0 1;
+#X obj 520 285 tgl 15 0 empty empty Away_from_Antenna -110 7 0 10 -262144
+-1 -1 0 1;
+#X text 407 206 Click when your Hand is:;
+#X obj 701 230 tgl 15 0 empty empty Near_Antenna -80 7 0 10 -262144
+-1 -1 0 1;
+#X obj 702 285 tgl 15 0 empty empty Away_from_Antenna -110 7 0 10 -262144
+-1 -1 0 1;
+#X text 591 206 Click when your Hand is:;
+#X floatatom 518 251 5 0 100 0 stored_value vol_ant_near -;
+#X floatatom 519 307 5 0 0 0 stored_value vol_ant_distant -;
+#X floatatom 701 251 5 0 100 0 stored_value pitch_ant_near -;
+#X floatatom 701 307 5 0 0 0 stored_value pitch_ant_distant -;
+#X text 44 185 Default Values;
+#X text 409 7 <<<<<<<<<<<< Antenna Calibration & Audio I/O >>>>>>>>>>>>
+;
+#X msg 354 343 reset;
+#X obj 521 329 tgl 15 0 empty empty Reset_Autoscale -97 7 0 10 -262144
+-1 -1 0 1;
+#X obj 286 489 catch~ audio_out_background;
+#X obj 239 459 *~;
+#X obj 285 424 r instrument_volume;
+#X connect 0 0 11 0;
+#X connect 0 1 15 0;
+#X connect 2 0 3 0;
+#X connect 4 0 18 1;
+#X connect 5 0 24 0;
+#X connect 8 0 9 0;
+#X connect 8 1 10 0;
+#X connect 9 1 39 0;
+#X connect 9 1 22 0;
+#X connect 11 2 8 0;
+#X connect 12 0 13 0;
+#X connect 12 1 14 0;
+#X connect 13 1 23 0;
+#X connect 13 1 38 0;
+#X connect 15 2 12 0;
+#X connect 18 0 55 0;
+#X connect 19 0 20 0;
+#X connect 20 0 21 0;
+#X connect 21 0 18 0;
+#X connect 22 0 19 0;
+#X connect 23 0 2 0;
+#X connect 25 0 1 0;
+#X connect 25 0 1 1;
+#X connect 25 0 6 0;
+#X connect 25 0 7 0;
+#X connect 27 0 26 0;
+#X connect 28 0 29 0;
+#X connect 30 0 33 0;
+#X connect 31 0 32 0;
+#X connect 38 0 31 0;
+#X connect 38 0 30 0;
+#X connect 39 0 28 0;
+#X connect 39 0 27 0;
+#X connect 40 0 27 1;
+#X connect 41 0 28 1;
+#X connect 43 0 30 1;
+#X connect 44 0 31 1;
+#X connect 46 0 22 1;
+#X connect 47 0 22 2;
+#X connect 48 0 23 1;
+#X connect 49 0 23 2;
+#X connect 52 0 20 0;
+#X connect 53 0 52 0;
+#X connect 54 0 1 0;
+#X connect 54 0 1 1;
+#X connect 54 0 6 0;
+#X connect 54 0 7 0;
+#X connect 55 0 1 0;
+#X connect 55 0 1 1;
+#X connect 55 0 6 0;
+#X connect 55 0 7 0;
+#X connect 56 0 55 1;
+#X coords 0 -1 1 1 350 250 1 400 100;

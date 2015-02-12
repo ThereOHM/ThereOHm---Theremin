@@ -1,0 +1,226 @@
+#N canvas 726 157 1009 676 10;
+#X obj -33 -1 cnv 15 870 650 empty empty empty 20 12 0 14 -241403 -66577
+0;
+#X obj 523 383 sub_mp3_stream;
+#X obj -33 11 cnv 15 870 30 empty empty ThereOHM 20 14 0 25 -49933
+-241403 0;
+#X obj -23 63 cnv 15 522 570 empty empty empty 20 12 0 14 -162280 -66577
+0;
+#X obj -17 353 sub_StepSequencer;
+#X obj -17 71 cnv 15 510 270 empty empty empty 20 12 0 14 -228856 -262144
+0;
+#X obj -18 71 cnv 15 510 20 empty empty Instrument_Selection 170 12
+0 14 -260097 -1 0;
+#X obj 11 144 sub_instr_selection;
+#N canvas 206 575 373 247 HevyMetal 0;
+#X obj -3366 -1844 sub_instr_HevyMetal;
+#X restore 52 210 pd HevyMetal;
+#N canvas 65 486 379 263 Guitar 0;
+#X obj -837 -1423 sub_instr_Guitar;
+#X coords 0 263 1 262 85 60 0;
+#X restore 52 181 pd Guitar;
+#N canvas 316 562 365 247 Hammond 0;
+#X obj -192 -180 sub_instr_BeeThree;
+#X restore 52 242 pd Hammond Organ;
+#N canvas 221 489 362 250 Violin 0;
+#X obj -189 -92 sub_instr_Violin;
+#X restore 53 152 pd Violin;
+#N canvas 307 448 364 245 Xylophone 0;
+#X obj -139 -122 sub_instr_Xylophone;
+#X restore 53 273 pd Xylophone;
+#X obj 276 134 cnv 15 214 204 empty empty empty 20 12 0 14 -66577 -66577
+0;
+#X obj 278 156 cnv 15 210 180 empty empty (refer_to_help) 20 12 0 8
+-228856 -1 0;
+#X obj 289 294 tgl 30 0 start start RUN 35 15 1 15 -4034 -1 -1 0 1
+;
+#X obj 289 257 tgl 30 0 stmpbox_connected empty Stompbox_Connected?
+35 15 1 15 -261682 -1 -1 0 1;
+#X obj 289 221 tgl 30 0 keyboard_connected empty Keyboard_Connected?
+35 15 1 15 -261682 -1 -1 0 1;
+#X obj 289 184 tgl 30 0 runs_on_x86x64 empty Running_on_x86_x64? 35
+15 1 15 -261682 -1 -1 1 1;
+#X obj 278 136 cnv 15 210 20 empty empty Start_Options 20 12 0 14 -191407
+-262144 0;
+#X obj 523 229 sub_mp3_record;
+#X obj 522 61 cnv 15 300 80 empty empty empty 20 12 0 14 -191407 -66577
+0;
+#N canvas 480 131 438 582 help 0;
+#X obj -1693 -39 cnv 15 430 20 empty empty :_help 20 12 0 14 -260097
+-1 0;
+#X obj -1694 -18 cnv 15 430 550 empty empty ThereOHM: 20 12 0 14 -233017
+-1 0;
+#X text -1679 343 <<<<<< Drum Machine >>>>>>>;
+#X text -1677 363 BD = Bass Drum;
+#X text -1678 379 SD = Snare Drum;
+#X text -1677 394 HH = Hi-Hat;
+#X text -1677 411 CB = Cymbal;
+#X text -1675 1 A_MIDI_Theremin_Synthesizer;
+#X obj -1455 38 pddplink Main_README.txt -text README;
+#X text -1674 38 For detailled help please read the;
+#X text -1679 437 Start Drum Machine with Click on "Run";
+#X text -1678 458 Volume of Drum Machine is seperate controlable;
+#X text -1677 479 With the Pattern Manager you can "Load" "Clear" and
+"Save" Drum Patterns;
+#X text -1667 162 changes default mp3-Rec Save-Path;
+#X text -1686 119 "Runing on x86x64";
+#X text -1668 133 enables visualizations (Drum Machine) \, that need
+more CPU-Power;
+#X text -1689 100 <<<<<< Button Explanation >>>>>>>;
+#X text -1683 195 "Keyboard Connected";
+#X text -1660 207 enables Shortcuts that can be changed in "pd shortcut_keys"
+;
+#X text -1681 243 "Stompbox_Connected";
+#X text -1660 256 enables input from Stompbox switches over Raspberry-GPIOs
+;
+#X text -1681 285 "Run";
+#X text -1658 299 starts the Theremin Synthesizer;
+#X text -1673 55 or visit the webpage;
+#X obj -1540 56 pddplink www.thereohm.de -text Website URL;
+#X restore 539 100 pd help;
+#N canvas 175 82 508 626 shortcut_keys 0;
+#X obj -945 -1131 cnv 15 500 20 empty empty :_Definition_of_Shortcut_Keyboard_Keys
+20 12 0 14 -260097 -1 0;
+#X obj -944 -1111 cnv 15 500 600 empty empty empty 20 12 0 14 -233017
+-1 0;
+#X obj -774 -948 key;
+#N canvas 162 294 604 349 macro1 0;
+#X obj 92 1 inlet;
+#X obj 92 187 s key_ticks;
+#X obj 92 55 sel 49;
+#X text 112 32 put the number of the key you wish to assign here;
+#X text 109 88 put a comma separated list of the ticks you wish to
+assign to the macro;
+#X msg 92 126 1 \, 5 \, 9 \, 13;
+#X connect 0 0 2 0;
+#X connect 2 0 5 0;
+#X connect 5 0 1 0;
+#X restore -930 -735 pd macro1;
+#N canvas 131 311 622 337 qwerty_decode 0;
+#X obj 11 71 select 113 97 119 115 101 100 114 102 116 103 121 104
+117 106 105 107;
+#X obj 11 37 inlet;
+#X obj 11 122 f 1;
+#X obj 42 122 f 2;
+#X obj 73 122 f 3;
+#X obj 104 122 f 4;
+#X obj 135 122 f 5;
+#X obj 166 122 f 6;
+#X obj 197 122 f 7;
+#X obj 228 122 f 8;
+#X obj 259 122 f 9;
+#X obj 289 122 f 10;
+#X obj 327 122 f 11;
+#X obj 365 122 f 12;
+#X obj 403 122 f 13;
+#X obj 441 122 f 14;
+#X obj 479 122 f 15;
+#X obj 517 122 f 16;
+#X obj 11 160 s key_ticks;
+#X connect 0 0 2 0;
+#X connect 0 1 3 0;
+#X connect 0 2 4 0;
+#X connect 0 3 5 0;
+#X connect 0 4 6 0;
+#X connect 0 5 7 0;
+#X connect 0 6 8 0;
+#X connect 0 7 9 0;
+#X connect 0 8 10 0;
+#X connect 0 9 11 0;
+#X connect 0 10 12 0;
+#X connect 0 11 13 0;
+#X connect 0 12 14 0;
+#X connect 0 13 15 0;
+#X connect 0 14 16 0;
+#X connect 0 15 17 0;
+#X connect 1 0 0 0;
+#X connect 2 0 18 0;
+#X connect 3 0 18 0;
+#X connect 4 0 18 0;
+#X connect 5 0 18 0;
+#X connect 6 0 18 0;
+#X connect 7 0 18 0;
+#X connect 8 0 18 0;
+#X connect 9 0 18 0;
+#X connect 10 0 18 0;
+#X connect 11 0 18 0;
+#X connect 12 0 18 0;
+#X connect 13 0 18 0;
+#X connect 14 0 18 0;
+#X connect 15 0 18 0;
+#X connect 16 0 18 0;
+#X connect 17 0 18 0;
+#X restore -931 -761 pd qwerty_decode;
+#X obj -944 -1101 cnv 15 500 150 empty empty :help_-_Keyboard_Keys_to_Numbers_Assignment
+20 12 2 13 -191407 -258113 0;
+#X text -921 -1077 Numbers:;
+#X text -914 -1058 0 = 48;
+#X text -914 -1045 1 = 49;
+#X text -914 -1023 9 = 57;
+#X text -826 -1077 Letters:;
+#X text -826 -1061 a = 97;
+#X text -825 -1024 z = 122;
+#X text -665 -1063 Space = 32;
+#X text -642 -1049 # = 35;
+#X text -642 -1034 + = 43;
+#X text -643 -1021 \, = 44;
+#X text -642 -1006 - = 45;
+#X text -644 -991 . = 46;
+#X obj -886 -841 s start;
+#X text -925 -656 space bar - starts/stops program;
+#X obj -774 -810 s instr_select_1;
+#X obj -775 -791 s instr_select_2;
+#X obj -775 -770 s instr_select_3;
+#X obj -775 -750 s instr_select_4;
+#X obj -886 -866 sel 32;
+#X text -925 -636 Numbers 1-4 - Select instrument;
+#X text -930 -682 <<<<<< Currently Configured >>>>>>;
+#X text -826 -1077 Letters:;
+#X text -921 -1077 Numbers:;
+#X text -717 -1078 Special Characters:;
+#X text -717 -1078 Special Characters:;
+#X text -826 -1049 b = 98;
+#X text -825 -1038 ...;
+#X text -914 -1035 ...;
+#X obj -774 -910 *;
+#X obj -759 -930 r keyboard_connected;
+#X obj -774 -860 sel 48 49 50 51 52;
+#X obj -774 -831 s instr_select_0;
+#X text -922 -554 c - clears current Drum Machine pattern;
+#X obj -615 -834 s patt_clr;
+#X obj -571 -792 s patt_dec;
+#X obj -593 -772 s patt_inc;
+#X text -924 -594 +/- - increment/decrement Drum Machine pattern;
+#X obj -549 -834 s patt_load;
+#X text -766 -881 Instruments;
+#X text -617 -881 Drum Machine;
+#X text -895 -887 Main Program;
+#X text -922 -574 l - loads Drum Machine pattern;
+#X obj -615 -859 sel 99 43 45 108 35;
+#X obj -527 -812 s patt_run;
+#X text -924 -612 # - starts/stops Drum Machine;
+#X connect 2 0 35 0;
+#X connect 25 0 19 0;
+#X connect 35 0 25 0;
+#X connect 35 0 37 0;
+#X connect 35 0 49 0;
+#X connect 36 0 35 1;
+#X connect 37 0 38 0;
+#X connect 37 1 21 0;
+#X connect 37 2 22 0;
+#X connect 37 3 23 0;
+#X connect 37 4 24 0;
+#X connect 49 0 40 0;
+#X connect 49 1 42 0;
+#X connect 49 2 41 0;
+#X connect 49 3 44 0;
+#X connect 49 4 50 0;
+#X restore 633 91 pd shortcut_keys;
+#N canvas 216 635 368 266 Calibrate_Antennas 0;
+#X obj 3 -92 sub_calibrate;
+#X restore 632 114 pd Calibrate_Antennas;
+#X obj 632 62 cnv 15 190 20 empty empty Configuration_&_Info 20 12
+0 14 -128992 -262144 0;
+#X obj 522 145 sub_background_sound;
+#X obj 57 304 hsl 42 23 0.01 10 1 0 instrument_volume empty volume
+7 13 1 9 -245500 -13381 -1 0 0;

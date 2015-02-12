@@ -1,0 +1,73 @@
+#N canvas 2 75 881 628 10;
+#X obj 400 100 cnv 200 350 230 empty empty empty 120 12 0 14 -262066
+-66577 0;
+#X obj 400 101 cnv 15 350 20 empty empty Guitar 130 12 0 14 -260097
+-33289 0;
+#X obj 415 162 hsl 128 15 20 400 0 0 empty Guit_metro_BPM BPM -2 -8
+0 10 -260097 -33289 -1 2339 1;
+#X obj 415 196 hsl 128 15 0.99 0.9995 0 0 empty Guit_decay Decay -2
+-8 0 10 -260097 -1 -1 6684 1;
+#X obj 415 230 hsl 128 15 250 8000 0 0 empty Guit_cut_off Cut_Off -2
+-8 0 10 -260097 -1 -1 6145 1;
+#X obj 599 145 cnv 15 150 185 empty empty Presets 20 12 0 14 -258019
+-1 0;
+#X obj 609 183 bng 15 250 50 0 empty empty Acoustic-Guitar 17 7 0 10
+-49933 -260097 -1;
+#X obj 609 207 bng 15 250 50 0 empty empty Bouzouki 17 7 0 10 -49933
+-260097 -1;
+#X floatatom 232 176 5 0 0 0 - - -;
+#X floatatom 249 123 5 0 0 2 min Guit_autoscale_min -;
+#X floatatom 287 124 5 0 0 2 max Guit_autoscale_max -;
+#X obj 232 147 autoscale;
+#X text 266 175 Frequency [Hz];
+#X text 528 333 Bouzouki;
+#X text 399 333 Acoustic-Guitar;
+#X text 679 334 Techno;
+#X obj 609 231 bng 15 250 50 0 empty empty Techno 17 7 0 10 -49933
+-260097 -1;
+#X msg 443 484 \; Guit_decay 0.9;
+#X msg 443 522 \; Guit_cut_off 2000;
+#X msg 573 483 \; Guit_cut_off 250;
+#X msg 571 533 \; Guit_cut_off 500;
+#X msg 568 580 \; Guit_cut_off 1000;
+#X msg 685 487 \; Guit_cut_off 4000;
+#X msg 685 525 \; Guit_cut_off 8000;
+#X obj 168 245 sub_instr_guitar_model;
+#X obj 232 60 r frequency;
+#X obj 167 289 throw~ audio_out;
+#X msg 533 352 \; Guit_autoscale_min 400 \; Guit_autoscale_max 900
+\; Guit_metro_BPM 300 \; Guit_decay 0.99 \; Guit_cut_off 4000 \;;
+#X msg 680 352 \; Guit_autoscale_min 400 \; Guit_autoscale_max 900
+\; Guit_metro_BPM 300 \; Guit_decay 0.9995 \; Guit_cut_off 6000 \;
+;
+#X obj 168 17 tgl 15 0 empty start_Guitar Start_Guitar 17 7 0 10 -262144
+-1 -1 0 1;
+#X obj 168 92 switch~;
+#X text -35 88 DSP on/off to redcue CPU load -->;
+#X obj 232 88 *;
+#X text 232 40 Frequency;
+#X msg 378 353 \; Guit_autoscale_min 40 \; Guit_autoscale_max 200 \;
+Guit_metro_BPM 90 \; Guit_decay 0.995 \; Guit_cut_off 4000 \;;
+#X msg 351 131 reset;
+#X obj 351 32 t b b;
+#X connect 2 0 24 1;
+#X connect 3 0 24 3;
+#X connect 4 0 24 4;
+#X connect 6 0 34 0;
+#X connect 7 0 27 0;
+#X connect 8 0 24 2;
+#X connect 9 0 11 1;
+#X connect 10 0 11 2;
+#X connect 11 0 8 0;
+#X connect 16 0 28 0;
+#X connect 24 0 26 0;
+#X connect 25 0 32 0;
+#X connect 29 0 24 0;
+#X connect 29 0 30 0;
+#X connect 29 0 32 1;
+#X connect 29 0 36 0;
+#X connect 32 0 11 0;
+#X connect 35 0 11 0;
+#X connect 36 0 35 0;
+#X connect 36 1 34 0;
+#X coords 0 -1 1 1 350 230 1 400 100;
