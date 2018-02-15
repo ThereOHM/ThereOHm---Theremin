@@ -8,4 +8,5 @@ The Pd Patch variies the Sound of a classic Theremin using different CCRMA Synth
 --
 
 For more information visit the projects webpage: http://suit-blog.net/articles/thereOHM/thereohm.html
+
 There you can find a detailed description (in German language)
